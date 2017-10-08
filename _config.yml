@@ -7,23 +7,23 @@ paginate: 5
 language: 'en-uk'
 
 # Website info
-name: 'Finding The Way Home'
-description: "A beautiful narrative written with the world's most elegant publishing platform. The story begins here."
+name: 'Harsha Sharma'
+description: "Quenching my inquistiveness with whatever I can find"
 
 # Author's info
-author: 'Casper McFadden'
+author: 'Harsha Sharma'
 # edit 'categories' in the front matter of every post to match this username
-nickname: casper
-bio: 'A paranormal expert and his daughter bunk in an abandoned house populated by 3 mischievous ghosts and one friendly one.'
+nickname: harsha
+bio: 'A sophomore student pursuing Bachelor in Technology in Engineering Physics in Indian Institute of Technology'
 location: 'Maine, USA'
 url: 'http://biomadeira.github.io/jasper/'
-image: 'assets/images/casper.png'
+image: 'assets/images/profilepic.JPG'
 
-short_url: 'biomadeira.github.io/jasper/'
+#short_url: 'biomadeira.github.io/jasper/'
 google_analytics: UA-69281367-1
-disqus: username
+#disqus: username
 # edit baseurl to simply '/' if using as your personal page (instead of a project page)
-baseurl: /jasper/
+baseurl: /harsha/
 
 # Permalinks
 permalink: /:title
@@ -56,8 +56,8 @@ exclude: [vendor]
 # or "master" otherwise
 safe: false
 lsi: false
-username: biomadeira
-repo: jasper
+username: hs256
+repo: hs256.github.io
 branch: master
 relative_source: ../jasper/
 destination: ../jasper-pages/
