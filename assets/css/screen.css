@@ -130,6 +130,9 @@ table { border-collapse: collapse; border-spacing: 0; }
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icons-sm li{
+    display:inline;
+}
 /* Each icon is created by inserting the correct character into the
    content of the :before pseudo element. Like a boss. */
 .icon-ghost:before {
@@ -220,6 +223,10 @@ h1 {
     font-size: 5rem;
     letter-spacing: -2px;
     text-indent: -3px;
+}
+
+.icons-sm li{
+    display:inline;
 }
 
 h2 {
