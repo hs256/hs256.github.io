@@ -106,19 +106,19 @@ table { border-collapse: collapse; border-spacing: 0; }
 
 /* Import the font file with the icons in it */
 @font-face {
-    font-family: "casper-icons";
-    src:url("../fonts/casper-icons.eot?v=1");
-    src:url("../fonts/casper-icons.eot?v=1#iefix") format("embedded-opentype"),
-    url("../fonts/casper-icons.woff?v=1") format("woff"),
-    url("../fonts/casper-icons.ttf?v=1") format("truetype"),
-    url("../fonts/casper-icons.svg?v=1#icons") format("svg");
+    font-family: "harsha-icons";
+    src:url("../fonts/harsha-icons.eot?v=1");
+    src:url("../fonts/harsha-icons.eot?v=1#iefix") format("embedded-opentype"),
+    url("../fonts/harsha-icons.woff?v=1") format("woff"),
+    url("../fonts/harsha-icons.ttf?v=1") format("truetype"),
+    url("../fonts/harsha-icons.svg?v=1#icons") format("svg");
     font-weight: normal;
     font-style: normal;
 }
 
 /* Apply these base styles to all icons */
 [class^="icon-"]:before, [class*=" icon-"]:before {
-    font-family: "casper-icons", "Open Sans", sans-serif;
+    font-family: "harsha-icons", "Open Sans", sans-serif;
     speak: none;
     font-style: normal;
     font-weight: normal;

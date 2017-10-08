@@ -4,9 +4,9 @@
 [![Ruby](https://img.shields.io/badge/ruby-2.1.1-blue.svg?style=flat)](http://travis-ci.org/biomadeira/jasper)
 [![Jekyll](https://img.shields.io/badge/jekyll-3.0.0-blue.svg?style=flat)](http://travis-ci.org/biomadeira/jasper)
 
-This is a port of Ghost's default theme [Casper](https://github.com/tryghost/casper) for Jekyll inspired by [Kasper](https://github.com/rosario/kasper). 
+This is a port of Ghost's default theme [harsha](https://github.com/tryghost/harsha) for Jekyll inspired by [Kasper](https://github.com/rosario/kasper). 
 
-You might well ask at this point why bother making a new Casper's clone? 
+You might well ask at this point why bother making a new harsha's clone? 
 Although this is inspired by Kasper, there are several **additional** features which make this port closer 
 to the original theme. Besides, I have recently updated it to match the current version of the theme.
 
@@ -15,7 +15,7 @@ to the original theme. Besides, I have recently updated it to match the current 
 
 [Jasper Live Demo](https://biomadeira.github.io/jasper)
 
-[Casper's Original Here](https://demo.ghost.io)
+[harsha's Original Here](https://demo.ghost.io)
 
 
 ## Screenshots
