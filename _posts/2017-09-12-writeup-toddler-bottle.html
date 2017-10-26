@@ -10,15 +10,30 @@ navigation: True
 logo: 'assets/images/ab.png'
 ---
 
-<p>This is a writeup with some hints to help you out with basic concepts and don't give direct answers or direct flags so that you enjoy the wargame as I did and not spoil it for anyone.</p>
+<p>This is a writeup with some hints to help you out with basic concepts and don't give direct answers or direct flags so that you enjoy the wargame as I did and not spoil it for anyone. You can't simply read this writeup and understand, you need to spend some time on the question before referring to this writeup.</p>
 <h2>Passcode:</h2>
-<p>In the code there is scanf function being called with argument as integer and scanf takes integer pointer and then writes to the address specified for variable which has to be written with value. In function main first,welcome() is called and just after it login() is called. With scanf() function in welcome() we can write a string of 100 bytes and then we see in disassembly that name value is stored at [ebp-0x70](0x70> =112) and passcode1 address(where passcode1 value will be written by scanf in login) is stored at [ebp-0x10](0x10=16).As we can write 100 bytes string in name, with a padding of 96(112-16)bytes, we can write the address where value of passcode1 will be written . And then we can give a value in passcode (which will be an integer) that we want to execute. So what we can do is write a got table entry with system call entry and in this way redirect the code execution so . So disassemble fflush or printf in login and copy the address in our exploit and for the integer value to be wriiten at that address we take (0x080485e3 =134514147) in our exploit so this is how our exploit looks like </p>
+<p>In the code there is scanf function being called with argument as integer and scanf takes integer pointer and then writes to the address specified for variable which has to be written with value. In function main first,welcome() is called and just after it login() is called. With scanf() function in welcome() we can write a string of 100 bytes and then this can be seen in disassembly that name value is stored at [ebp-0x70](0x70 =112) and passcode1 address(where passcode1 value will be written by scanf in login) is stored at [ebp-0x10](0x10=16) in stack.As we can write 100 bytes string in name, with a padding of 96(112-16)bytes, we can write the address where value of passcode1 will be written . And then we can give a value in passcode (which will be an integer) that we want to execute. So what we can do is write a got table entry with system call entry and in this way redirect the code execution so . So we'll first overwrite the passcode1 address with got table entry and then write to it the address of system("/bin/sh") call and when ffush or printf will be called we get the shell instead .So disassemble fflush or printf in login and copy the address in our exploit and for the integer value to be wriiten at that address we take (0x080485e3 =134514147) in our exploit so this is how our exploit looks like </p>
 <pre>
 python -c "print 'A' * 96 + '\x00\xa0\x04\x08' + '134514147\n'" | ./passcode
 </pre>
 
-<h2>Input:</h2>
+<h2>Random:</h2>
 <p>This was pretty easy. From gdb we get the value of random integer and that remains same so we take its XOR with 0xdeadbeef and convert it in int and pass it as key and gets the flag.</p>
+
+<h2>Input:</h2>
+<h3>Stage1 </h3>
+<p>Make an array of 99 characters (100 arguments) and change value of index (ord('A')-1)and (ord('B')-1) to specified strings and then execute the input file in same directory with subprocess.Popen func in python with first argument as array with two entries (file to be executed and arguments array ) and other two arguments as stdin and stderr. </p>
+<h3>Stage2 </h3>
+<p>Use os.pipe to create a pipe and return a pair of file descriptors(r,w ) usable for reading and writing and specify stdinr and stdinw (similarly for stderr).And then with os.write, write into stdinw and stderrw as specified in problem and then we pass in subprocess.Popen stdin and stderr as stdinr an dstderrr respectively as arguments.</p>
+<h3>Stage3</h3>
+<p>Create variable environ as required in challenge and pass it as argument in subprocess.Popen.</p>
+<h3>Stage4</h3>
+<p>Open file "\x0a" file and open it and write into it  "\x00\x00\x00\x00"</p>
+<h3>Stage5</h3>
+<p>Just send the string over a socket connection in exploit.</p>
+<p>Now, copy this exploit to /tmp and we need to create a symlink to file flag in order to open it with our script.</p>
+
+ 
 <!--
 <p>This is just an <em>ipsis verbis</em> copy of the first example running on the <a href="http://demo.ghost.io">Ghost Demo</a>. This shows how you can use html styling to achieve your hopes.</p>
 
