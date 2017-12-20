@@ -1,56 +1,46 @@
 ---
 layout: post
-cover: 'assets/images/info-tech.jpeg'
-title: Pwnable.kr - Toddler Bottle
-date:   2017-09-12 10:18:00
-tags: binary-exploitation
-subclass: 'infosec hack programming'
+cover: 'assets/images/outreachy.png'
+title: Outreachy intern in Linux Kernel
+date:   2017-12-15 10:18:00
+tags: outreachy linux nftables
+subclass: 'nftables'
 categories: 'harsha'
 navigation: True
 logo: 'assets/images/ab.png'
 ---
 
-<p>This is a writeup with some hints to help you out with basic concepts and don't give direct answers or direct flags so that you enjoy the wargame as I did and not spoil it for anyone. You can't simply read this writeup and understand, you need to spend some time on the question before referring to this writeup.</p>
-<h2>Passcode:</h2>
-<p>In the code there is scanf function being called with argument as integer and scanf takes integer pointer and then writes to the address specified for variable which has to be written with value. In function main first,welcome() is called and just after it login() is called. With scanf() function in welcome() we can write a string of 100 bytes and then this can be seen in disassembly that name value is stored at [ebp-0x70](0x70 =112) and passcode1 address(where passcode1 value will be written by scanf in login) is stored at [ebp-0x10](0x10=16) in stack.As we can write 100 bytes string in name, with a padding of 96(112-16)bytes, we can write the address where value of passcode1 will be written . And then we can give a value in passcode (which will be an integer) that we want to execute. So what we can do is write a got table entry with system call entry and in this way redirect the code execution so . So we'll first overwrite the passcode1 address with got table entry and then write to it the address of system("/bin/sh") call and when ffush or printf will be called we get the shell instead .So disassemble fflush or printf in login and copy the address in our exploit and for the integer value to be wriiten at that address we take (0x080485e3 =134514147) in our exploit so this is how our exploit looks like </p>
-<pre>
-python -c "print 'A' * 96 + '\x00\xa0\x04\x08' + '134514147\n'" | ./passcode
-</pre>
+<h2>Outreachy:</h2>
+<p><a href="https://www.outreachy.org/">Outreachy</a> provides three month internship for people from groups traditionally underrepresented in tech. Interns are paid a stipend of $5,500 and have a $500 travel stipend available to them. Interns work remotely with mentors from Free and Open Source Software (FOSS) communities on projects ranging from programming, user experience, documentation, illustration and graphical design, to data science. Interns often find employment after their internship with Outreachy sponsors or in jobs that use the FOSS skills they learned during their internship.</p>
+<h3>How I got to know about outreachy? </h3>
+<p>It was in summer 2017, that I got to know about outreachy for the first time from seniors who have previously appiled for outreachy.After googling and reading the blogs from previous participants, I got intrigued to check out the participating organisations.</p>
+<h3>Choosing organization.. </h3>
+<p>Organisations for round 15 were not out at that time but list of organisations which participated in previous rounds can give a good idea about the participating organisations.I decided to look at the previous projects and works of interns from different organisations.
+</p><p>As a linux lover, the projects which interested me the most were from linux-kernel but wait I don't know anyone who have previously contributed in linux-kernel and how am I supposed to start ?There are no good-first-bugs issues that I can solve (like in other open-source projects) and code-base is huge.Where to start and how to start..? </p>
+<h3>Starting contribution to Linux-kernel </h3>
+<p>But it is not that difficult. I started following <a href="https://kernelnewbies.org/FirstKernelPatch> kernelnewbies </a> to create my first patch before the application period started and submitted it. Finally, it got a review and got rejected. I sent some more patches but they didn't get reviewed (as I used my name 'harsha' to sign-off the patches and not my complete name 'Harsha Sharma'.)</p>
+<h3>Appication period started </h3>
+<p> So, finally the wait was over and application period started. I started working and with help of outreachy Linux-kernel coordinator Julia Lawall, I got a good no. of checkpatch and coccinelle pathes applied. XD </p>
+<p>I started looking into various projects proposed for round 15, and started working on dri-devel (aka kernel GPU subsystem) and nftables (Network filtration tool).
+<h3>Choosing Project </h3>
+<p>You don't wanna do a project just for the sake of getting selected as intern but you'll doing this project for 3 months full time, so finding the project of your interest is important. You can submit proposal for more than one project but priority is still important.</p>
+<p>I started working on task of "Better manual Upload support for atomic" in Kernel GPU-subsystem meanwhile going through project nftables. After working on it a bit and discussing with mentor, I got to know that this task was better suited for whole internship period so I started on some small tasks in same project as suggested by mentor.Meanwhile, I worked on adding support for matching reserved type 0 headers field and addrs and adding tests and some other bug-fixes.</p>
+<h3>Submitting Proposal</h3>
+<p>After working on both the projects, I got more interested in nftables and submitted my proposal for project nftables after discussing timeline with my mentor Pablo Neira Ayuso.
+<h3>Result day</h3>
+<p>Keeping the fingers crossed and waiting for the results, I was not disappointed and finally selected as outreachy intern for round 15 in linux-kernel and project nftables. The journey wasn't easy but was worth it and damn exciting.</p>
+<h3>Two weeks as outreachy intern </h3>
+<p>The journey has not ended but just started and I'm really looking forward to learn a lot from this great opportunity.</p>
+<p>Right now, I'm working on following tasks.</p>
+<ol>
+<li>Adding option for nft to define variables from command line which can be referenced from input files.</li>
+<li>Allocate handle in tables to uniquely identify a table, parsing the new handle attribute with libnftnl and extend nft to print thi handle with optioon "-a".</li>
+<li>Fixing bugs from <a href="bugzilla.netfilter.org"> bugzilla </a></li>
+</ol>
+<h3>Feel free to ping me for any questions about outreachy program, application process, Linux-kernel, nftables, etc.</h3>
 
-<h2>Random:</h2>
-<p>This was pretty easy. From gdb we get the value of random integer and that remains same so we take its XOR with 0xdeadbeef and convert it in int and pass it as key and gets the flag.</p>
 
-<h2>Input:</h2>
-<h3>Stage1 </h3>
-<p>Make an array of 99 characters (100 arguments) and change value of index (ord('A')-1)and (ord('B')-1) to specified strings and then execute the input file in same directory with subprocess.Popen func in python with first argument as array with two entries (file to be executed and arguments array ) and other two arguments as stdin and stderr. </p>
-<h3>Stage2 </h3>
-<p>Use os.pipe to create a pipe and return a pair of file descriptors(r,w ) usable for reading and writing and specify stdinr and stdinw (similarly for stderr).And then with os.write, write into stdinw and stderrw as specified in problem and then we pass in subprocess.Popen stdin and stderr as stdinr an dstderrr respectively as arguments.</p>
-<h3>Stage3</h3>
-<p>Create variable environ as required in challenge and pass it as argument in subprocess.Popen.</p>
-<h3>Stage4</h3>
-<p>Open file "\x0a" file and open it and write into it  "\x00\x00\x00\x00"</p>
-<h3>Stage5</h3>
-<p>Just send the string over a socket connection in exploit.</p>
-<p>Now, copy this exploit to /tmp and we need to create a symlink to file flag in order to open it with our script.</p>
-<h1>Leg:</h1>
-<p>In ARM architecture, r1, r2, r3 and r4 are registers similar to eax, ebx, ecx and edx and pc stands for program counter.
-for the func key1(),
-<pre>mov r3, pc; mov r0, r3;</pre> this will set r0 to pc = 0x00008cdc ( In ARM mode pc = current place +8)
-For func key2(), 
-<pre>add r6, pc, #1;bx r6;</pre> (bx stands for branch and exchange instruction which means that according to lsb (least significant bit) of the address to branch to , the process will treat the next instruction as ARM or as thumb mode.In thumb mode,16 bits registers are there and for less memory targets thumb allows code to be smaller and faster.So bx changes the ARM to thumb) and then
-<pre>mov r3, pc;adds r3, #4; mov r0, r3;</pre> 
-so key2 = pc + 4 and pc in thumb mode = current address +4 so key2 = (0x00008d08 + 4)
-Key3 is equal to final value of link register which is equal to next instruction n disassembly after func key3 is called.
-So key3 = 0x00008d80.
-Add values of key1, key2 and key3 and give that as ouput to get the flag.</p>
-<h2>Mistake:</h2>
-<p>
-<pre>
-f(fd=open("/home/mistake/password",O_RDONLY,0400) < 0)
-</pre>
-Here there is no bracket for fd value assignment so due to operator priority of '<' is more than "=" if the file opens correctly then  open will be definitely greter than 0 and hence fd will be set to 0(false condition).
-So in the line read(fd,pw_buf,PW_LEN) , instead of reading from password file it will read from stdin and that's why we see on running file that after printing "Do not bruteforce" it waits for a input.So then with scanf another input is taken pw_buffer and whose xor is taken and compared with input passed .XOR key is 1.So Xor of 111111111 with key 1 will give 0000000000 so we give 000000000 as first input and 111111111 as second output and gets the flag
-</p>
+
 <!--
 <p>This is just an <em>ipsis verbis</em> copy of the first example running on the <a href="http://demo.ghost.io">Ghost Demo</a>. This shows how you can use html styling to achieve your hopes.</p>
 
