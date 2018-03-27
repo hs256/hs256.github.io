@@ -1,0 +1,140 @@
+﻿Strace Proposal (Google Summer of Code 2018)
+
+->Name:
+Harsha Sharma
+->Email:
+harshasharmaiitr@gmail.com
+->Resume:
+https://harshasharma.in/assets/Resume.pdf
+->Phone no:
++919413384398
+->IRC nick:
+hs256
+->Twitter URL:
+https://twitter.com/harshasha256
+->Title of Proposal:
+Support for alternative tracing backends
+->Suggested By:
+Eugene Syromyatnikov
+->Abstract of Proposal:
+1. Add backend interface to allow for multiple alternative backends.
+2. Using gdbserver:
+With implementation of catch syscalls in gdbserver which adds a new
+QCatchSyscalls packet to enable 'catch syscall', and newstop reasons
+"syscall_entry" and "syscall_return" for those events.
+GDB can catch some or all of the syscalls issued by the debuggee, and
+show the related information for each syscall. If no argument is
+specified, calls to and returns from all system calls will be caught.
+Basic implementation idea for gdbserver backend:
+strace talks to gdbserver via gdbserver backend
+strace sends packet: $vCont;c  (continue)
+strace receives packet:T05syscall_entry:
+16;06:b0e2ffffff7f0000;07:68e2ffffff7f0000;10:27a9b0f7ff7f0000;thread:p2162.2162;core:5;
+strace sends packet: $g (get registers)
+strace receives packet: daffffffffffffff0000000000000000...
+
+I plan to use previous patches:[1], [2], [3]
+
+3. Using ftrace:
+kprobe, uprobe and kernel tracepoint scripts make use of ftrace - This
+allows tracing kernel functions, stack tracing and debugging crash.
+write to files in /sys/kernel/debug/tracing and reading output from
+/sys/kernel/debug/tracing.
+Detailed description:  [4].
+
+4. Perf events:
+Call  perf_event_open syscalls , kernel writes events to ring buffer
+in user-space, read tracepoints from ring buffer.
+Various ioctl like PERF_EVENT_IOC_ENABLE and PERF_EVENT_IOC_DISABLE
+also act on perf_event_open() file descriptors, allowing enabling and
+disabling the individual counter or event group specified by the file
+descriptor argument respectively. [5]
+
+[1]. https://lists.strace.io/pipermail/strace-devel/2017-February/005985.html
+[2]. https://lists.strace.io/pipermail/strace-devel/2017-February/005986.html
+[3]. https://lists.strace.io/pipermail/strace-devel/2017-February/005987.html
+[4]. https://lwn.net/Articles/366796/
+[5]. http://man7.org/linux/man-pages/man2/perf_event_open.2.html
+
+-> Detailed description of your idea including explanation on why is it innovative and what it will contribute:
+Strace currently uses ptrace systemcall, pausing the target process for each syscall so that the debugger can read state. And doing this twice: when the syscall begins, and when it ends. This means strace pauses your application twice for each syscall, and context-switches each time between the application and strace. So, support for alternative tracing backends is very much required.
+The main problem with ftrace/perf is that they can overflow ring buffer and lose events.Here are some of the ways, it can be handled:
+1. Increase ring buffer size.
+2. stop tracing with tracing_off for some error conditions. By writing 0 in trace_fd file descriptor,  recording events in ring buffer can be stopped.
+3. add trace event with TRACE_EVENT macro and call this new trace function during system call handler inside kernel (to trace only the syscalls)
+4. Condensing events with DECLARE_EVENT_CLASS . It allows tracing events which record same structured data.
+
+->Timeline
+1. 27th March - 22nd April : Getting familiar with various backends (ptrace, gdbserver, ftrace, perf and eBPF)
+2. 23rd April: Student Projects announced
+3. 23rd April - 14th May: Community bonding, discuss various possibilities of implementing alternative backends
+4. 14th May: Coding period starts
+5. 14th May - 24th June: Add backend interface to allow for multiple alternative backends and add code for gdbserver and ftrace backend
+6. 24th June - 14th July: Develop relevant test infrastructure for testing with alternative backends (I think this should be a priority,since proper testing is necessary.)
+7. 14th July - 30 th July: Add code for perf backend
+8. 30th July - 14th August: Getting code reviewed and merged.
+9. 14th August: Final evaluation
+
+-> Description of previous work, existing solutions (links to prototypes, bibliography are more than welcome)
+Here, are some of my contributions in strace project:
+1. ptp.c: print field names and use macros from print_fields.h
+(https://lists.strace.io/pipermail/strace-devel/2018-March/008001.html)
+2. tests: check decoding of PTP_* ioctl commands
+(https://lists.strace.io/pipermail/strace-devel/2018-March/008022.html)
+3. netlink: decode libudev netlink header
+(https://lists.strace.io/pipermail/strace-devel/2018-March/007957.html)
+4. tests: extend for decoding of udev_monitor_netlink_header
+(https://lists.strace.io/pipermail/strace-devel/2018-March/008023.html)
+5. tests: enhance run.sh usage error diagnostics
+(https://lists.strace.io/pipermail/strace-devel/2017-December/007807.html)
+6. syscall: replace if (debug_flag) ... with debug_msg macro
+(https://lists.strace.io/pipermail/strace-devel/2017-December/007801.html)
+
+-> Mention the details of your academic studies, any previous work, internships
+
+BTech II year undergraduate student (Engineering Physics)
+Indian Institute of Technology Roorkee, Roorkee
+I have experience of working as linux kernel intern with outreachy (project - netfilter). Here are some of my contributions in project: (https://patchwork.ozlabs.org/project/netfilter-devel/list/?series=&submitter=72429&state=*&q=&archive=both&delegate=)
+
+I have experience of working closely with a college group called SDSLabs [SDSLabs] which involves building applications for the campus as well as helping other students by conducting lectures and engaging workshops.
+
+I’m also a member of InfosecIITR group (Information Security Group) and actively participates in CTF’s and binary exploitation, reversing and web application security are my main fields of interest.
+
+-> Any relevant skills that will help you to achieve the goal
+Advanced C knowledge (4 years + experience)
+Advanced git knowledge
+Linux kernel development
+Computer Architecture and Operating Systems knowledge
+Shell programming
+X86-assembly
+Gdb, radare2, vim, makefile, autotools
+
+-> Any previous open-source projects (or even previous GSoC) you have contributed to?
+Contributions in netfilter:
+(https://patchwork.ozlabs.org/project/netfilter-devel/list/?series=&submitter=72429&state=*&q=&archive=both&delegate=)
+Contributions in linux:
+(https://github.com/torvalds/linux/commits?author=hs256)
+
+Just to be clear, I’m applying in just your project.
+
+-> Any open-source code of yours that we can check out?
+(https://github.com/hs256)
+Some of my projects:
+Backdoor: (https://backdoor.sdslabs.co/ )
+Backdoor is a platform for hackers to show their talent in a competitive environment. Earlier it was launched only within the IIT Roorkee campus, but now it has been made available for anyone over the internet. It is a Capture the Flag styled event. A flag (basically a string) is associated with every challenge. Once you have solved a particular challenge you would get the hidden flag which you need to submit back to us for getting points.
+I also deploy challenges for ctf’s and practice arena for the same other than solving challenges.
+
+Beast:
+Docker based tool to automate deployment of challenge containers spawned individually for each user.
+
+-> Do you plan to have any other commitments during SoC that may affect you work?
+
+My summer vacations are from 5 May to 15 July. 
+I can easily give 40-50 hours a week till my college reopens and 35-40 hours a week after
+that. On Saturdays and Sundays there is no college and on Wednesdays I have only 2 hour
+session. I intend to complete most of the work before my college reopens.
+Other than this project, I have no other commitments / vacations planned for the summers.
+
+-> Statement of Motivation
+I’m a 18 year old, second year undergraduate student at IIT Roorkee.
+I’m a tech enthusiast with my main field of interest being operating systems, system programming and system virtualization. I love everything about linux and strace is one of my favourite tools on linux.GSOC provides a great platform to dive right into middle of open-source development with the opportunity to work in big open-source projects with experienced core-developers. This makes me eager and very excited to participate in this program. 
