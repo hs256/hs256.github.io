@@ -8,13 +8,13 @@ language: 'en-uk'
 
 # Website info
 name: 'Harsha Sharma'
-description: "Quenching my inquistiveness with whatever I can find"
+description: "Undergraduate Student at IIT Roorkee"
 
 # Author's info
 author: 'Harsha Sharma'
 # edit 'categories' in the front matter of every post to match this username
 nickname: harsha
-bio: 'A sophomore student pursuing Bachelor in Technology in Engineering Physics in Indian Institute of Technology'
+bio: 'A junior year student pursuing Bachelor in Technology in Engineering Physics in Indian Institute of Technology'
 location: 'Roorkee, Uttarakhand'
 url: 'http://biomadeira.github.io/jasper/'
 image: 'assets/images/profilepic.JPG'
