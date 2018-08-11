@@ -7,17 +7,18 @@ logo: 'assets/images/ab.png'
 current: about
 ---
 
-I am a sophomore student pursuing Bachelors in Technology in Engineering Physics in Indian Institute of Technology, Roorkee, Uttarakhand.
+I am a junior year student pursuing Bachelors in Technology in Engineering Physics in Indian Institute of Technology, Roorkee, Uttarakhand.
 
 Interests:
 
-Computer Science: My keen interset lies in web development, information security, network security and operating system development. I have always been a tech enthusiast and have been exploring fields like binary exploitation, reverse engineering, web application security and linux-kernel development. Open source is one of my recent interests.
+My main fields of interest are operating systems, network security, virtualization systems and computer architecture.
 
-Physics: I am mainly interested in theoritical physics and quantum mechanics is my recent field of interest.
+I have experience of working as a research intern at Chair of Operating Systems, Technical University of Munich, where I worked on Checkpoint and Restore Project in Genode framework and L4 Fiasco microkernel.
 
-Entertainment: I absolutely love dancing, travelling and listening to music of all genres. There is much more to know about it.
+I was a Google Summer of Code student with Netfilter (Linux Kernel Network Firewalling) organisation, where my major project was to implement connection tracking timeout policies in netfilter. I also presented this work in Netfilter Conference 2018, Berlin.
+
+I also worked as a linux kernel intern with outreachy in round 14. I'm an active open-source contributor in linux kernel and linux kernel related projects.  
 
 I'm an active member at Software Development Section (SDSLabs), and associated with InfosecIITR group and also a member of Choreography and Dance Section at IIT Roorkee.
 SDSLabs is a technical group which strives to take further the tech culture at our campus through its innovations and initiatives.
-
 
