@@ -11,7 +11,8 @@ I am a junior year student pursuing Bachelors in Technology in Engineering Physi
 
 Interests:
 
-My main fields of interest are operating systems, network security, virtualization systems and computer architecture.
+My main fields of interest are operating systems, network security, virtualization systems, computer architecture and compiler design.
+I am interested in making computer and network systems more secure, reliable and efficient.
 
 I have experience of working as a research intern at Chair of Operating Systems, Technical University of Munich, where I worked on Checkpoint and Restore Project in Genode framework and L4 Fiasco microkernel.
 
