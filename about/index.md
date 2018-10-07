@@ -7,7 +7,7 @@ logo: 'assets/images/ab.png'
 current: about
 ---
 
-I am a junior year student pursuing Bachelors in Technology in Engineering Physics in Indian Institute of Technology, Roorkee, Uttarakhand.
+I am a junior year student pursuing Bachelors in Technology in Engineering Physics at Indian Institute of Technology, Roorkee, Uttarakhand.
 
 Interests:
 
@@ -18,7 +18,7 @@ I have experience of working as a research intern at Chair of Operating Systems,
 
 I was a Google Summer of Code student with Netfilter (Linux Kernel Network Firewalling) organisation, where my major project was to implement connection tracking timeout policies in netfilter. I also presented this work in Netfilter Conference 2018, Berlin.
 
-I also worked as a linux kernel intern with outreachy in round 14. I'm an active open-source contributor in linux kernel and linux kernel related projects.  
+I had also worked as a linux kernel intern with outreachy in round 14. I'm an active open-source contributor in linux kernel and linux kernel related projects.
 
 I'm an active member at Software Development Section (SDSLabs), and associated with InfosecIITR group and also a member of Choreography and Dance Section at IIT Roorkee.
 SDSLabs is a technical group which strives to take further the tech culture at our campus through its innovations and initiatives.
