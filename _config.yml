@@ -81,9 +81,9 @@ analytics:
 # Site Author
 author:
   name             : "Harsha Sharma"
-  avatar           : "profile.png"
+  avatar           : "hs-profile.jpg"
   bio              : "Research Fellow at MSR India"
-  location         : "Jaipur"
+  location         : "Bangalore, India"
   employer         :
   # pubmed           : "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
   googlescholar    : "https://scholar.google.com/citations?user=cgDyzwgAAAAJ&hl=en"
@@ -96,7 +96,7 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           : "https://github.com/hs256"
+  github           : "hs256"
   google_plus      :
   keybase          :
   instagram        :
