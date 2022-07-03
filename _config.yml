@@ -82,7 +82,7 @@ analytics:
 author:
   name             : "Harsha Sharma"
   avatar           : "hs-profile.jpg"
-  bio              : "Research Fellow at MSR India"
+  # bio              : "Research Fellow at MSR India"
   location         : "Bangalore, India"
   employer         :
   # pubmed           : "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
