@@ -8,9 +8,11 @@ redirect_from:
   - /about.html
 ---
 
-I am a research fellow at [Microsoft Research India](https://www.microsoft.com/en-us/research/lab/microsoft-research-india/) where I work with [Venkat Padmanabhan](https://www.microsoft.com/en-us/research/people/padmanab/) and [Ranjita Bhagwan](https://www.microsoft.com/en-us/research/people/bhagwan/) on optimizing Microsoft's Wide Area Network. 
+I'm a first year PhD student at [Massachusetts Institute of Technology](https://www.mit.edu/) where I'm co-advised by [Prof. Hari Balakrishnan](http://nms.lcs.mit.edu/~hari/) and [Prof. Mohammad Alizadeh](https://people.csail.mit.edu/alizadeh/).
 
-Prior to this, I obtained my bachelors from [Indian Institute of Technology Roorkee](https://www.iitr.ac.in/) with majors in Engineering physics.
+Prior to this, I was a research fellow at [Microsoft Research India](https://www.microsoft.com/en-us/research/lab/microsoft-research-india/) where I worked with [Venkat Padmanabhan](https://www.microsoft.com/en-us/research/people/padmanab/) and [Ranjita Bhagwan](https://www.microsoft.com/en-us/research/people/bhagwan/) on optimizing Microsoft's Wide Area Network. 
+
+I completed my bachelors from [Indian Institute of Technology Roorkee](https://www.iitr.ac.in/) with majors in Engineering physics.
 
 Recent News
 ======
